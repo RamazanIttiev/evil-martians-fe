@@ -1,0 +1,59 @@
+.input {
+  position: relative;
+  padding: 1rem 0 0;
+
+  &__inner {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    outline: 0;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.8rem 0.8rem 0.8rem 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:placeholder-shown ~ .input__label {
+      font-size: 0.7rem;
+      cursor: text;
+      top: 35px;
+    }
+
+    &:focus {
+      ~ .input__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        color: #feb572;
+        font-weight: 700;
+        font-size: 0.7rem;
+      }
+      font-weight: 700;
+      border-width: 2px;
+      border-color: rgb(251 189 117);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 0.7rem;
+    color: #fff;
+  }
+
+  &__error {
+    color: #ff2a2a;
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: -1.5rem;
+  }
+}
