@@ -73,5 +73,23 @@
     &:focus-visible {
       outline: 1px solid var(--outline-color);
     }
+
+    /* workaround to hide "clear" and "reveal password" buttons in MS Edge */
+    &::-ms-reveal,
+    &::-ms-clear {
+      display: none;
+    }
+
+    /* workaround to suppress ugly background in autocompleted inputs */
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active,
+    &:-webkit-autofill:first-line {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: var(--text-color);
+      caret-color: var(--text-color);
+      font-family: var(--font-family), sans-serif;
+    }
   }
 }
