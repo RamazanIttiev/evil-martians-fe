@@ -1,59 +1,71 @@
 .input {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+  border: none;
+  inline-size: 100%;
   position: relative;
-  padding: 1rem 0 0;
 
-  &__inner {
-    font-family: inherit;
+  &__wrapper {
     width: 100%;
-    border: 0;
-    border-bottom: 2px solid #fff;
-    outline: 0;
-    font-size: 1rem;
-    color: #fff;
-    padding: 0.8rem 0.8rem 0.8rem 0;
-    background: transparent;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
+    height: 48px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    background: var(--input-bg-color);
 
-    &::placeholder {
-      color: transparent;
+    &:hover {
+      background-color: var(--input-hover-bg-color);
+    }
+    &:focus,
+    &:focus-visible {
+      outline: none;
     }
 
-    &:placeholder-shown ~ .input__label {
-      font-size: 0.7rem;
-      cursor: text;
-      top: 35px;
+    &_isInvalid {
+      border-color: var(--input-error-border-color);
     }
-
-    &:focus {
-      ~ .input__label {
-        position: absolute;
-        top: 0;
-        display: block;
-        transition: 0.2s;
-        color: #feb572;
-        font-weight: 700;
-        font-size: 0.7rem;
-      }
-      font-weight: 700;
-      border-width: 2px;
-      border-color: rgb(251 189 117);
-    }
-  }
-
-  &__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 0.7rem;
-    color: #fff;
   }
 
   &__error {
-    color: #ff2a2a;
-    font-size: 0.7rem;
+    color: var(--input-error-color);
+    font-size: 12px;
     position: absolute;
-    bottom: -1.5rem;
+    bottom: -20px;
+  }
+
+  &__label {
+    color: var(--input-label-color);
+    font-size: 12px;
+  }
+
+  &__password-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+  }
+
+  &__inner {
+    width: 100%;
+    appearance: none;
+    border: none;
+    border-radius: inherit;
+    background: transparent;
+    block-size: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    font-size: 14px;
+    font-family: inherit;
+
+    &_right-padding {
+      padding-right: 36px;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 1px solid var(--focus-outline-color);
+    }
   }
 }

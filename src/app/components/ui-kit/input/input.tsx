@@ -1,5 +1,10 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, useCallback, useState } from "react";
+import { IconButton } from "../icon-button/icon-button.tsx";
+
 import cn from "classnames";
+
+import IconEyeOpened from "../../../../assets/icons/eye-opened.svg";
+import IconEyeClosed from "../../../../assets/icons/eye-closed.svg";
 
 import "./input.css";
 
@@ -11,23 +16,45 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const baseClass = "input";
 
 export const Input = (props: InputProps) => {
-  const { error, className } = props;
+  const { error } = props;
 
-  const fullClassName = cn(baseClass, {
-    [`${baseClass}__error`]: error,
-    className,
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const isPassword = props.type === "password";
+
+  const togglePassword = useCallback(() => {
+    setPasswordVisible((prevState) => !prevState);
+  }, []);
+
+  const inputClassNames = cn(`${baseClass}__inner`, {
+    [`${baseClass}__inner_right-padding`]: isPassword,
+  });
+
+  const wrapperClassNames = cn(`${baseClass}__wrapper`, {
+    [`${baseClass}__wrapper_isInvalid`]: error,
   });
 
   return (
-    <div className={fullClassName}>
-      <input
-        {...props}
-        placeholder={props.label}
-        className={`${baseClass}__inner`}
-      />
+    <div className={baseClass}>
       <label htmlFor={props.name} className={`${baseClass}__label`}>
         {props.label}
       </label>
+      <div className={wrapperClassNames}>
+        <input
+          {...props}
+          aria-invalid={error ? true : undefined}
+          placeholder={props.label}
+          className={inputClassNames}
+        />
+        {isPassword && (
+          <IconButton
+            className={`${baseClass}__password-icon`}
+            onClick={togglePassword}
+            aria-label={passwordVisible ? "Hide password" : "Show password"}
+            icon={passwordVisible ? <IconEyeOpened /> : <IconEyeClosed />}
+          />
+        )}
+      </div>
       {error && <span className={`${baseClass}__error`}>{error}</span>}
     </div>
   );
