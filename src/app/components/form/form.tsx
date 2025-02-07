@@ -32,7 +32,15 @@ export const Form = () => {
 
   const [serverError, setServerError] = useState<string | undefined>();
 
+  const resetErrors = (field: string, value: string | undefined) => {
+    setCredentialsErrors((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    resetErrors(e.target.name, undefined);
     setCredentials((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -64,10 +72,7 @@ export const Form = () => {
             const { field } = response;
 
             if (field) {
-              setCredentialsErrors((prev) => ({
-                ...prev,
-                [field]: response.message,
-              }));
+              resetErrors(field, response.message);
             }
             break;
           }
