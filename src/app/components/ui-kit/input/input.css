@@ -63,6 +63,10 @@
       padding-right: 36px;
     }
 
+    &::placeholder {
+      color: var(--icon-button-icon-color);
+    }
+
     &:focus,
     &:focus-visible {
       outline: 1px solid var(--focus-outline-color);
