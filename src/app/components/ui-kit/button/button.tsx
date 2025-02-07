@@ -21,6 +21,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <button
+      type={"button"}
       aria-disabled={disabled || loading}
       className={classes}
       disabled={disabled || loading}
