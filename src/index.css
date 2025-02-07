@@ -1,3 +1,26 @@
+:root {
+  --app-bg-color: #242424;
+
+  --focus-outline-color: #f0f0f0;
+
+  --input-bg-color: #1e1e1e;
+  --input-hover-bg-color: #232323;
+  --input-border-color: #444;
+  --input-label-color: #bababa;
+  --input-error-border-color: #800d00;
+  --input-error-color: #ba1200;
+
+  --text-color: #f0f0f0;
+
+  --icon-button-size: 24px;
+  --icon-button-icon-color: #8e8d8d;
+  --icon-button-focus-icon-color: #f0f0f0;
+  --icon-button-active-icon-color: #f0f0f0;
+  --icon-button-active-bg-color: #1e1e1e;
+  --icon-button-hover-icon-color: #f0f0f0;
+  --icon-button-hover-bg-color: #1e1e1e;
+}
+
 body {
   margin: 0;
   padding: 0;
