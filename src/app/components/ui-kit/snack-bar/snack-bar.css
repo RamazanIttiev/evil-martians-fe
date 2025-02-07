@@ -1,0 +1,15 @@
+.snack-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  padding: 16px;
+
+  background-color: var(--error-bg-color);
+  color: var(--error-text-color);
+
+  border-radius: 16px;
+  border: none;
+
+  font-family: var(--font-family), sans-serif;
+  font-size: 12px;
+}

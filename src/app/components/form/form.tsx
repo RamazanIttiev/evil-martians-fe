@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Input } from "../ui-kit/input/input.tsx";
 import { Button } from "../ui-kit/button/button.tsx";
+import { SnackBar } from "../ui-kit/snack-bar/snack-bar.tsx";
 
 import { validateCredentials } from "./form.utils.ts";
 import { submitCredentials } from "../../utils/mockFetch.ts";
@@ -31,6 +32,10 @@ export const Form = () => {
   });
 
   const [serverError, setServerError] = useState<string | undefined>();
+
+  useEffect(() => {
+    setTimeout(() => setServerError(undefined), 2000);
+  }, [serverError]);
 
   const resetErrors = (field: string, value: string | undefined) => {
     setCredentialsErrors((prev) => ({
@@ -79,7 +84,9 @@ export const Form = () => {
         }
       } catch (error) {
         console.log(error);
-        setServerError("Something went wrong. Please try again later.");
+        setServerError(
+          "Some error occurred on the server. Please try again later.",
+        );
       } finally {
         setLoading(false);
       }
@@ -88,33 +95,36 @@ export const Form = () => {
   );
 
   return (
-    <form className="form">
-      <Input
-        name="email"
-        id="email"
-        label="Your email"
-        type="email"
-        placeholder="ramazan@ittiev.ru"
-        autoComplete="username"
-        required
-        value={credentials.email}
-        onChange={handleChange}
-        error={credentialsErrors?.email}
-      />
-      <Input
-        name="password"
-        id="password"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        required
-        value={credentials.password}
-        onChange={handleChange}
-        error={credentialsErrors?.password}
-      />
-      <Button type="submit" loading={loading} onClick={handleSubmit}>
-        Let me in!
-      </Button>
-    </form>
+    <>
+      <form className="form">
+        <Input
+          name="email"
+          id="email"
+          label="Your email"
+          type="email"
+          placeholder="ramazan@ittiev.ru"
+          autoComplete="username"
+          required
+          value={credentials.email}
+          onChange={handleChange}
+          error={credentialsErrors?.email}
+        />
+        <Input
+          name="password"
+          id="password"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          required
+          value={credentials.password}
+          onChange={handleChange}
+          error={credentialsErrors?.password}
+        />
+        <Button type="submit" loading={loading} onClick={handleSubmit}>
+          Let me in!
+        </Button>
+      </form>
+      {serverError && <SnackBar>{serverError}</SnackBar>}
+    </>
   );
 };
