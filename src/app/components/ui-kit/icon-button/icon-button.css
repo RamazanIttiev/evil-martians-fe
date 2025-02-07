@@ -21,8 +21,8 @@
 
   &:focus,
   &:focus-visible {
-    fill: var(--icon-button-focus-icon-color);
-    outline: 1px solid var(--focus-outline-color);
+    fill: var(--outline-color);
+    outline: 1px solid var(--outline-color);
     border-radius: 4px;
   }
 

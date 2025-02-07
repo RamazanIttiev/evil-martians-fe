@@ -1,7 +1,7 @@
 :root {
   --app-bg-color: #242424;
 
-  --focus-outline-color: #f0f0f0;
+  --outline-color: #f0f0f0;
 
   --input-bg-color: #1e1e1e;
   --input-hover-bg-color: #232323;
@@ -14,11 +14,14 @@
 
   --icon-button-size: 24px;
   --icon-button-icon-color: #8e8d8d;
-  --icon-button-focus-icon-color: #f0f0f0;
   --icon-button-active-icon-color: #f0f0f0;
-  --icon-button-active-bg-color: #1e1e1e;
   --icon-button-hover-icon-color: #f0f0f0;
-  --icon-button-hover-bg-color: #1e1e1e;
+
+  --button-bg-color: #1d1d1d;
+  --button-hover-bg-color: #1d1d1d;
+  --button-active-bg-color: #232323;
+  --button-disabled-bg-color: #3b3a39;
+  --button-disabled-color: #81807e;
 }
 
 body {

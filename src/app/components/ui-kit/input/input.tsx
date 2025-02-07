@@ -3,8 +3,8 @@ import { IconButton } from "../icon-button/icon-button.tsx";
 
 import cn from "classnames";
 
-import IconEyeOpened from "../../../../assets/icons/eye-opened.svg";
-import IconEyeClosed from "../../../../assets/icons/eye-closed.svg";
+import IconEyeOpened from "../../../../assets/icons/icon-eye-opened.svg";
+import IconEyeClosed from "../../../../assets/icons/icon-eye-closed.svg";
 
 import "./input.css";
 
