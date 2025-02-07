@@ -96,7 +96,7 @@ export const Form = () => {
 
   return (
     <>
-      <form className="form">
+      <form className="form" noValidate>
         <Input
           name="email"
           id="email"
