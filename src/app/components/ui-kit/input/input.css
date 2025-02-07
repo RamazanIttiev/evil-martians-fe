@@ -18,6 +18,7 @@
     &:hover {
       background-color: var(--input-hover-bg-color);
     }
+
     &:focus,
     &:focus-visible {
       outline: none;
@@ -65,6 +66,7 @@
 
     &::placeholder {
       color: var(--icon-button-icon-color);
+      font-size: 12px;
     }
 
     &:focus,

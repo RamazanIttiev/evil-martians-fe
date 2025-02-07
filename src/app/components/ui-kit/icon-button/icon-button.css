@@ -19,7 +19,10 @@
     fill: var(--icon-button-active-icon-color);
   }
 
-  &:focus,
+  &:focus {
+    outline: none;
+  }
+
   &:focus-visible {
     fill: var(--outline-color);
     outline: 1px solid var(--outline-color);

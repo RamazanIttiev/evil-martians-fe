@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 300px;
+  font-family:
+    Martian mono,
+    sans-serif;
+}

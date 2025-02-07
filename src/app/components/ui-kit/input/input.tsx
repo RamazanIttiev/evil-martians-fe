@@ -10,7 +10,7 @@ import "./input.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  error?: string | null;
+  error?: string;
 }
 
 const baseClass = "input";
@@ -42,8 +42,8 @@ export const Input = (props: InputProps) => {
       <div className={wrapperClassNames}>
         <input
           {...props}
+          aria-errormessage={error}
           aria-invalid={error ? true : undefined}
-          placeholder={props.label}
           className={inputClassNames}
         />
         {isPassword && (
