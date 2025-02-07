@@ -42,6 +42,7 @@ export const Input = (props: InputProps) => {
       <div className={wrapperClassNames}>
         <input
           {...props}
+          type={isPassword && passwordVisible ? "text" : props.type}
           aria-errormessage={error}
           aria-invalid={error ? true : undefined}
           className={inputClassNames}
