@@ -16,12 +16,7 @@ export const IconButton = (props: IconButtonProps) => {
   const classNames = cn(baseClass, props.className);
 
   return (
-    <button
-      {...buttonProps}
-      aria-hidden={true}
-      className={classNames}
-      type="button"
-    >
+    <button {...buttonProps} className={classNames} type="button">
       {icon}
     </button>
   );

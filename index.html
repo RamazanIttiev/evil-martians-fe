@@ -3,11 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta itemprop="description" content="Welcome to Evil Martians!" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap" rel="stylesheet">
+    <link rel="preload" href="/src/assets/fonts/MartianMono-StdRg.woff2" as="font" type="font/woff2" crossorigin />
     <title>Vite + React + TS</title>
+    <style>
+      @font-face {
+        font-family: "MartianMono";
+        src: url("/src/assets/fonts/MartianMono-StdRg.woff2") format("woff2"),
+             url("/src/assets/fonts/MartianMono-StdRg.ttf") format("ttf"),
+             url("/src/assets/fonts/MartianMono-StdRg.otf") format("otf");
+        font-weight: normal;
+        font-style: normal;
+        font-display: optional;
+      }
+
+      :root {
+        --font-family: "MartianMono";
+
+        --app-bg-color: #242424;
+        --app-secondary-bg-color: #1d1d1d;
+
+        --error-bg-color: #511111;
+        --error-text-color: #ffbfbf;
+
+        --outline-color: #f0f0f0;
+
+        --input-bg-color: #1e1e1e;
+        --input-hover-bg-color: #232323;
+        --input-border-color: #444;
+        --input-label-color: #bababa;
+        --input-placeholder-color: #6e6e6e;
+        --input-error-border-color: #800d00;
+        --input-error-color: #ef4444;
+
+        --text-color: #f0f0f0;
+
+        --icon-button-size: 24px;
+        --icon-button-icon-color: #8e8d8d;
+        --icon-button-active-icon-color: #f0f0f0;
+        --icon-button-hover-icon-color: #f0f0f0;
+
+        --button-bg-color: #1d1d1d;
+        --button-hover-bg-color: #1d1d1d;
+        --button-active-bg-color: #232323;
+        --button-disabled-bg-color: #3b3a39;
+        --button-disabled-color: #81807e;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--app-bg-color);
+        font-family: var(--font-family), sans-serif;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
