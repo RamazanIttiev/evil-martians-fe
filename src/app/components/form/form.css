@@ -4,4 +4,16 @@
   gap: 32px;
   min-width: 300px;
   font-family: var(--font-family), sans-serif;
+
+  &__inner {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__button {
+    margin-top: 16px;
+  }
 }

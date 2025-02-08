@@ -2,6 +2,7 @@
   --font-family: "Martian mono";
 
   --app-bg-color: #242424;
+  --app-secondary-bg-color: #1d1d1d;
 
   --error-bg-color: #511111;
   --error-text-color: #ffbfbf;
@@ -12,6 +13,7 @@
   --input-hover-bg-color: #232323;
   --input-border-color: #444;
   --input-label-color: #bababa;
+  --input-placeholder-color: #6e6e6e;
   --input-error-border-color: #800d00;
   --input-error-color: #ef4444;
 

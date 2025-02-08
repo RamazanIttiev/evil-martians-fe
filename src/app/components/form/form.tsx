@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  FormHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import { Input } from "../ui-kit/input/input.tsx";
 import { Button } from "../ui-kit/button/button.tsx";
@@ -6,6 +11,8 @@ import { SnackBar } from "../ui-kit/snack-bar/snack-bar.tsx";
 
 import { validateCredentials } from "./form.utils.ts";
 import { submitCredentials } from "../../utils/mockFetch.ts";
+
+import cn from "classnames";
 
 import "./form.css";
 
@@ -16,7 +23,9 @@ export interface Credentials {
 
 export type CredentialsErrors = Partial<Credentials>;
 
-export const Form = () => {
+const baseClass = "form";
+
+export const Form = (props: FormHTMLAttributes<HTMLFormElement>) => {
   const [loading, setLoading] = useState(false);
 
   const [credentials, setCredentials] = useState<Credentials>({
@@ -34,7 +43,9 @@ export const Form = () => {
   const [serverError, setServerError] = useState<string | undefined>();
 
   useEffect(() => {
-    setTimeout(() => setServerError(undefined), 2000);
+    if (serverError) {
+      setTimeout(() => setServerError(undefined), 2000);
+    }
   }, [serverError]);
 
   const resetErrors = (field: string, value: string | undefined) => {
@@ -94,35 +105,44 @@ export const Form = () => {
     [credentials],
   );
 
+  const classNames = cn(baseClass, props.className);
+
   return (
     <>
-      <form className="form" noValidate>
-        <Input
-          name="email"
-          id="email"
-          label="Your email"
-          type="email"
-          placeholder="ramazan@ittiev.ru"
-          autoComplete="username"
-          required
-          value={credentials.email}
-          onChange={handleChange}
-          error={credentialsErrors?.email}
-        />
-        <Input
-          name="password"
-          id="password"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={credentials.password}
-          onChange={handleChange}
-          error={credentialsErrors?.password}
-        />
-        <Button type="submit" loading={loading} onClick={handleSubmit}>
-          Let me in!
-        </Button>
+      <form {...props} className={classNames} noValidate>
+        <div className={`${baseClass}__inner`}>
+          <Input
+            name="email"
+            id="email"
+            label="Your email"
+            type="email"
+            placeholder="ramazan@ittiev.ru"
+            autoComplete="username"
+            required
+            value={credentials.email}
+            onChange={handleChange}
+            error={credentialsErrors?.email}
+          />
+          <Input
+            name="password"
+            id="password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            required
+            value={credentials.password}
+            onChange={handleChange}
+            error={credentialsErrors?.password}
+          />
+          <Button
+            type="submit"
+            loading={loading}
+            onClick={handleSubmit}
+            className={`${baseClass}__button`}
+          >
+            Let me in!
+          </Button>
+        </div>
       </form>
       {serverError && <SnackBar>{serverError}</SnackBar>}
     </>
