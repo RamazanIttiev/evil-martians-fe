@@ -11,7 +11,8 @@
   &__wrapper {
     width: 100%;
     height: 48px;
-    border: 1px solid var(--input-border-color);
+    border: none;
+    outline: 1px solid var(--input-border-color);
     border-radius: 4px;
     background: var(--input-bg-color);
     position: relative;
@@ -26,7 +27,7 @@
     }
 
     &_isInvalid {
-      border-color: var(--input-error-border-color);
+      outline: 1px solid var(--input-error-border-color);
     }
   }
 
@@ -76,6 +77,7 @@
     &:focus,
     &:focus-visible {
       outline: 1px solid var(--outline-color);
+      outline-offset: 2px;
     }
 
     /* workaround to hide "clear" and "reveal password" buttons in MS Edge */
