@@ -2,6 +2,7 @@ import React, {
   FormHTMLAttributes,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -9,8 +10,10 @@ import { Input } from "../ui-kit/input/input.tsx";
 import { Button } from "../ui-kit/button/button.tsx";
 import { SnackBar } from "../ui-kit/snack-bar/snack-bar.tsx";
 
-import { validateCredentials } from "./form.utils.ts";
-import { submitCredentials } from "../../utils/mockFetch.ts";
+import { validateInput } from "./form.utils.ts";
+import { submitCredentials } from "../../utils/submit.ts";
+
+import { Credentials, CredentialsErrors } from "../../types/form.types.ts";
 
 import cn from "classnames";
 
@@ -19,13 +22,6 @@ import "./form.css";
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   handleLogin: (value: boolean) => void;
 }
-
-export interface Credentials {
-  email: string;
-  password: string;
-}
-
-export type CredentialsErrors = Partial<Credentials>;
 
 const baseClass = "form";
 
@@ -39,14 +35,19 @@ export const Form = (props: FormProps) => {
     password: "",
   });
 
-  const [credentialsErrors, setCredentialsErrors] = useState<
-    CredentialsErrors | undefined
-  >({
-    email: undefined,
-    password: undefined,
-  });
+  const [credentialsErrors, setCredentialsErrors] = useState<CredentialsErrors>(
+    {
+      email: undefined,
+      password: undefined,
+    },
+  );
 
   const [serverError, setServerError] = useState<string | undefined>();
+
+  const isSubmitDisabled = useMemo(
+    () => Object.values(credentialsErrors).some((error) => !!error),
+    [credentialsErrors],
+  );
 
   useEffect(() => {
     if (serverError) {
@@ -54,15 +55,12 @@ export const Form = (props: FormProps) => {
     }
   }, [serverError]);
 
-  const resetErrors = (field: string, value: string | undefined) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentialsErrors((prev) => ({
       ...prev,
-      [field]: value,
+      [e.target.name]: undefined,
     }));
-  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    resetErrors(e.target.name, undefined);
     setCredentials((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -73,7 +71,8 @@ export const Form = (props: FormProps) => {
     async (e: React.FormEvent) => {
       e.preventDefault();
 
-      const errors = validateCredentials(credentials);
+      // Basic validation on FE side
+      const errors = validateInput(credentials);
       const isValid = Object.values(errors).every((error) => !error);
 
       setCredentialsErrors(errors);
@@ -85,26 +84,30 @@ export const Form = (props: FormProps) => {
       try {
         const response = await submitCredentials(credentials);
 
-        setLoading(false);
-
         switch (response.status) {
           case "Success":
             handleLogin(true);
-            break;
+            return;
           case "InvalidCredentials": {
-            const { field } = response;
+            if (response.errors === undefined) return;
 
-            if (field) {
-              resetErrors(field, response.message);
-            }
-            break;
+            const newErrors: CredentialsErrors = Object.fromEntries(
+              response.errors?.map(({ field, message }) => [field, message]),
+            );
+
+            setCredentialsErrors((prevErrors) => ({
+              ...prevErrors,
+              ...newErrors,
+            }));
+
+            return;
           }
         }
-      } catch (error) {
-        console.log(error);
-        setServerError(
-          "Some error occurred on the server. Please try again later.",
-        );
+      } catch (error: unknown) {
+        const message =
+          error instanceof Error ? error.message : "An unknown error occurred.";
+
+        setServerError(message);
       } finally {
         setLoading(false);
       }
@@ -144,6 +147,7 @@ export const Form = (props: FormProps) => {
           <Button
             type="submit"
             loading={loading}
+            disabled={isSubmitDisabled}
             onClick={handleSubmit}
             className={`${baseClass}__button`}
           >
