@@ -16,6 +16,10 @@ import cn from "classnames";
 
 import "./form.css";
 
+export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
+  handleLogin: (value: boolean) => void;
+}
+
 export interface Credentials {
   email: string;
   password: string;
@@ -25,7 +29,9 @@ export type CredentialsErrors = Partial<Credentials>;
 
 const baseClass = "form";
 
-export const Form = (props: FormHTMLAttributes<HTMLFormElement>) => {
+export const Form = (props: FormProps) => {
+  const { handleLogin } = props;
+
   const [loading, setLoading] = useState(false);
 
   const [credentials, setCredentials] = useState<Credentials>({
@@ -83,6 +89,7 @@ export const Form = (props: FormHTMLAttributes<HTMLFormElement>) => {
 
         switch (response.status) {
           case "Success":
+            handleLogin(true);
             break;
           case "InvalidCredentials": {
             const { field } = response;
@@ -102,7 +109,7 @@ export const Form = (props: FormHTMLAttributes<HTMLFormElement>) => {
         setLoading(false);
       }
     },
-    [credentials],
+    [credentials, handleLogin],
   );
 
   const classNames = cn(baseClass, props.className);
