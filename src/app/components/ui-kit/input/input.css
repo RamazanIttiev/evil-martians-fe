@@ -14,6 +14,7 @@
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
     background: var(--input-bg-color);
+    position: relative;
 
     &:hover {
       background-color: var(--input-hover-bg-color);
@@ -44,8 +45,10 @@
 
   &__password-icon {
     position: absolute;
-    right: 8px;
-    top: 50%;
+    right: 0;
+    top: 6px;
+    width: 36px;
+    height: 36px;
   }
 
   &__inner {
@@ -91,6 +94,14 @@
       -webkit-text-fill-color: var(--text-color);
       caret-color: var(--text-color);
       font-family: var(--font-family), sans-serif;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .input__wrapper {
+    &:hover {
+      background: var(--input-bg-color);
     }
   }
 }
