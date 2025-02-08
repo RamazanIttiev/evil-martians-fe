@@ -37,6 +37,6 @@ export const submitCredentials = async (credentials: {
           message: validationErrors.password,
         });
       }
-    }, 1000);
+    }, 2000);
   });
 };
