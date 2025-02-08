@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useCallback, useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 import { IconButton } from "../icon-button/icon-button.tsx";
 
 import cn from "classnames";
@@ -22,9 +22,9 @@ export const Input = (props: InputProps) => {
 
   const isPassword = props.type === "password";
 
-  const togglePassword = useCallback(() => {
+  const togglePassword = () => {
     setPasswordVisible((prevState) => !prevState);
-  }, []);
+  };
 
   const inputClassNames = cn(`${baseClass}__inner`, {
     [`${baseClass}__inner_right-padding`]: isPassword,

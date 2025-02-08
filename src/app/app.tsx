@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import { Form } from "./components/form/form.tsx";
 import { Button } from "./components/ui-kit/button/button.tsx";
@@ -9,13 +9,13 @@ import "./app.css";
 
 const baseClass = "app";
 
-const LoggedInContent = (props: { onClick: (value: boolean) => void }) => {
+const LoggedInContent = (props: { handleLogin: (value: boolean) => void }) => {
   return (
     <div className={`${baseClass}__logged`}>
       <span className={`${baseClass}__logged-title`}>
         You are in the team now!
       </span>
-      <Button onClick={() => props.onClick(false)}>Go for a break!</Button>
+      <Button onClick={() => props.handleLogin(false)}>Go for a break!</Button>
     </div>
   );
 };
@@ -23,14 +23,14 @@ const LoggedInContent = (props: { onClick: (value: boolean) => void }) => {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = useCallback((value: boolean) => {
+  const handleLogin = (value: boolean) => {
     setIsLoggedIn(value);
-  }, []);
+  };
 
   return (
     <div className={baseClass}>
       {isLoggedIn ? (
-        <LoggedInContent onClick={handleLogin} />
+        <LoggedInContent handleLogin={handleLogin} />
       ) : (
         <>
           <Form handleLogin={handleLogin} />

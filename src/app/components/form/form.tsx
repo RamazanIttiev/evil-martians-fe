@@ -61,13 +61,13 @@ export const Form = (props: FormProps) => {
     }));
   };
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     resetErrors(e.target.name, undefined);
     setCredentials((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  }, []);
+  };
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
