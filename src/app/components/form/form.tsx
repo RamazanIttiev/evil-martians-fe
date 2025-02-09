@@ -126,7 +126,7 @@ export const Form = (props: FormProps) => {
             id="email"
             label="Your email"
             type="email"
-            placeholder="ramazan@ittiev.ru"
+            placeholder="ramazan@martian.com"
             autoComplete="username"
             required
             value={credentials.email}
