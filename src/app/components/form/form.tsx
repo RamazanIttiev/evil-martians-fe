@@ -51,7 +51,7 @@ export const Form = (props: FormProps) => {
 
   useEffect(() => {
     if (serverError) {
-      setTimeout(() => setServerError(undefined), 2000);
+      setTimeout(() => setServerError(undefined), 4000);
     }
   }, [serverError]);
 
