@@ -14,7 +14,7 @@
   padding: 0 16px;
 
   border-radius: 4px;
-  box-shadow: 0 0 15px 3px #ffffff14;
+  box-shadow: var(--box-shadow);
   border: 1px solid #444;
   box-sizing: border-box;
 
@@ -34,7 +34,7 @@
   }
 
   &:hover {
-    box-shadow: rgba(0, 1, 0, 0.2) 0 2px 8px;
+    box-shadow: none;
   }
 
   &:active:not(:disabled, &_disabled, &_loading) {

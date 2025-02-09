@@ -151,7 +151,7 @@ export const Form = (props: FormProps) => {
             onClick={handleSubmit}
             className={`${baseClass}__button`}
           >
-            Let me in!
+            Let me in
           </Button>
         </div>
       </form>
