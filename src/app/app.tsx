@@ -15,7 +15,12 @@ const LoggedInContent = (props: { handleLogin: (value: boolean) => void }) => {
       <span className={`${baseClass}__logged-title`}>
         You are in the team now!
       </span>
-      <Button onClick={() => props.handleLogin(false)}>Go for a break</Button>
+      <Button
+        onClick={() => props.handleLogin(false)}
+        className={`${baseClass}__logged-button`}
+      >
+        Go for a break
+      </Button>
     </div>
   );
 };
