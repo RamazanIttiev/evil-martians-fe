@@ -81,7 +81,7 @@
 
 @media (max-width: 768px) {
   .button {
-    &:hover {
+    &:hover:not(:disabled, &_disabled, &_loading) {
       background: var(--button-bg-color);
     }
   }
