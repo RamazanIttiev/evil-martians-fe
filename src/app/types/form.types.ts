@@ -5,7 +5,7 @@ export interface Credentials {
 
 export type CredentialsErrors = Partial<Credentials>;
 
-type ResponseStatus = "Success" | "InvalidCredentials" | "ServerError";
+type ResponseStatus = "Success" | "InvalidCredentials";
 
 export type ResponseErrors = {
   field: string;
