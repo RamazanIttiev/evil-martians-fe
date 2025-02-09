@@ -13,7 +13,7 @@ export const validate = (credentials: Credentials): CredentialsErrors => {
   if (!validEmailRegexp.test(credentials.email)) {
     errors.email = "Afraid this is not a valid email";
   } else if (credentials.email !== VALID_EMAIL) {
-    errors.email = "Are you sure this email is correct?";
+    errors.email = "There is no account with this email :(";
   }
 
   if (credentials.password.length < 6) {
@@ -23,10 +23,6 @@ export const validate = (credentials: Credentials): CredentialsErrors => {
   }
 
   return errors;
-};
-
-export const randomIntFromInterval = (): number => {
-  return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
 };
 
 export const mapErrorsToResponse = (

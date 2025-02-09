@@ -1,10 +1,8 @@
-import {
-  mapErrorsToResponse,
-  randomIntFromInterval,
-  validate,
-} from "./validation.ts";
+import { mapErrorsToResponse, validate } from "./validation.ts";
 
 import { Response } from "../types/form.types.ts";
+
+const SERVER_ERROR_EMAIL = "error@martian.com";
 
 export const submitCredentials = async (credentials: {
   email: string;
@@ -17,8 +15,8 @@ export const submitCredentials = async (credentials: {
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (randomIntFromInterval() < 3) {
-        reject(new Error("Random ServerError for test purposes"));
+      if (credentials.email === SERVER_ERROR_EMAIL) {
+        reject(new Error("Server error. Please, refresh the page"));
         return;
       }
 
