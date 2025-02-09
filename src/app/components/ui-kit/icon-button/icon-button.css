@@ -15,10 +15,6 @@
 
   fill: var(--icon-button-icon-color);
 
-  &:active {
-    fill: var(--icon-button-active-icon-color);
-  }
-
   &:focus {
     outline: none;
   }
@@ -27,9 +23,5 @@
     fill: var(--outline-color);
     outline: 1px solid var(--outline-color);
     border-radius: 4px;
-  }
-
-  &:hover {
-    fill: var(--icon-button-hover-icon-color);
   }
 }

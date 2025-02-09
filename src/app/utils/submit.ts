@@ -18,7 +18,7 @@ export const submitCredentials = async (credentials: {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (randomIntFromInterval() < 3) {
-        reject(new Error("This is a random ServerError for test purposes"));
+        reject(new Error("Random ServerError for test purposes"));
         return;
       }
 

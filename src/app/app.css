@@ -20,7 +20,7 @@
     flex-grow: 2;
     padding: 1rem;
     box-sizing: border-box;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow-primary);
   }
 
   &__title {
@@ -28,7 +28,7 @@
     font-size: 2rem;
     text-align: center;
     line-height: 1.5;
-    color: var(--text-color);
+    color: var(--text-light-color);
   }
 
   &__logged {
@@ -43,7 +43,7 @@
       font-size: 1.2rem;
       text-align: center;
       line-height: 1.5;
-      color: var(--text-color);
+      color: var(--text-light-color);
     }
   }
 

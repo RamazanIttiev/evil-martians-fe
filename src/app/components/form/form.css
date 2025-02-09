@@ -9,6 +9,13 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    border: none;
+    border-radius: 16px;
+    background-color: var(--tertiary-color);
+    box-shadow: var(--box-shadow-secondary);
+    padding: 3rem 1rem;
+    box-sizing: border-box;
   }
 
   &__button {
